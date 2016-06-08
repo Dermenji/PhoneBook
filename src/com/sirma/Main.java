@@ -28,6 +28,12 @@ public class Main {
                 Long id = cm.addContact(new Contact(name, number, city));
                 System.out.println("New record with ID  " +  id + " has been created!");
                 break;
+            case "R":
+                System.out.println("Record ID: ");
+                Long idr = Long.parseLong(sc.nextLine());
+                cm.deleteContact(idr);
+                System.out.println("New record with ID  " +  idr + " has been removed!");
+                break;
         }
 
     }
