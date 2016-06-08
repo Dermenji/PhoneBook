@@ -1,5 +1,6 @@
 package com.sirma;
 
+import java.io.IOException;
 import java.util.List;
 
 /**
@@ -13,7 +14,7 @@ public class ContactManager {
     }
 
     // Добавление контакта - возвращает ID добавленного контакта
-    public Long addContact(Contact contact) {
+    public Long addContact(Contact contact) throws IOException {
         return dao.addContact(contact);
     }
 
