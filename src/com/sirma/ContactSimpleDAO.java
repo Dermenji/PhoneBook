@@ -5,6 +5,7 @@ import com.opencsv.CSVWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -22,7 +23,9 @@ public class ContactSimpleDAO implements ContactDAO {
         contacts.add(contact);
         try {
             CSVWriter writer = new CSVWriter(new FileWriter(outputFile, true), ',');
-
+            String[] a = contact.toString().split(",");
+            writer.writeNext(a);
+            writer.close();
         } catch (IOException e) {
             e.printStackTrace();
         }
