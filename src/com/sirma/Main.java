@@ -2,11 +2,12 @@ package com.sirma;
 
 import com.sun.org.apache.xpath.internal.SourceTree;
 
+import java.io.IOException;
 import java.util.Scanner;
 
 public class Main {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
 
         ContactManager cm = new ContactManager();
         System.out.println("Please select action (I, N, R, L, Q): ");
