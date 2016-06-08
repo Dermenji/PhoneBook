@@ -31,4 +31,7 @@ public class ContactManager {
     public List<Contact> showContacts() {
         return dao.showContacts();
     }
+
+    public void loadFile() {
+    }
 }
