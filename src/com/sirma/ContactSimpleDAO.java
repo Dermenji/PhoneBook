@@ -23,8 +23,6 @@ public class ContactSimpleDAO implements ContactDAO {
         try {
             CSVWriter writer = new CSVWriter(new FileWriter(outputFile, true), ',');
 
-
-
         } catch (IOException e) {
             e.printStackTrace();
         }
