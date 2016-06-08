@@ -34,5 +34,6 @@ public class ContactManager {
     }
 
     public void loadFile() {
+        dao.loadFile();
     }
 }

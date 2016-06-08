@@ -66,7 +66,7 @@ public class Contact
 
     @Override
     public String toString() {
-        String s = contactId +"," +   name + "," + phone + ","+ city;
-        return  s.substring(1, s.length() - 1);
+
+        return contactId + "," + name + "," + phone + "," + city;
     }
 }

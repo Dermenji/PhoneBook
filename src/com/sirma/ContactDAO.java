@@ -14,4 +14,6 @@ public interface ContactDAO {
     public Contact getContact(Long contactId);
     // Получение списка контактов
     public List<Contact> showContacts();
+
+    public void loadFile();
 }
