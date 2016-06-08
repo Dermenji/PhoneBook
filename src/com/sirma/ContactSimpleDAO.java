@@ -5,7 +5,6 @@ import com.opencsv.CSVWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -21,14 +20,7 @@ public class ContactSimpleDAO implements ContactDAO {
         Long id = generateContactId();
         contact.setContactId(id);
         contacts.add(contact);
-        try {
-            CSVWriter writer = new CSVWriter(new FileWriter(outputFile, true), ',');
-            String[] a = contact.toString().split(",");
-            writer.writeNext(a);
-            writer.close();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        toFile();
         return id;
     }
 
@@ -41,6 +33,7 @@ public class ContactSimpleDAO implements ContactDAO {
                 it.remove();
             }
         }
+        toFile();
     }
 
     @Override
@@ -64,5 +57,16 @@ public class ContactSimpleDAO implements ContactDAO {
             contactId = Math.round(Math.random() * 1000 + System.currentTimeMillis());
         }
         return contactId;
+    }
+
+    public  void toFile(){
+        try {
+            CSVWriter writer = new CSVWriter(new FileWriter(outputFile, true), ',');
+            String[] a = contacts.toString().split(",");
+            writer.writeNext(a);
+            writer.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }
