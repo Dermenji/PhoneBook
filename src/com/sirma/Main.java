@@ -1,6 +1,5 @@
 package com.sirma;
 
-import com.sun.org.apache.xpath.internal.SourceTree;
 
 import java.io.IOException;
 import java.util.Scanner;
@@ -8,13 +7,15 @@ import java.util.Scanner;
 public class Main {
 
     public static void main(String[] args) throws IOException {
-
+        ContactSimpleDAO csd = new ContactSimpleDAO();
+        csd.syncData();
+        Scanner sc = new Scanner(System.in);
         ContactManager cm = new ContactManager();
+        cm.loadFile();
         System.out.println("Please select action (I, N, R, L, Q): ");
-        Scanner sc= new Scanner(System.in);
         String choice = sc.nextLine();
 
-        switch (choice){
+        switch (choice) {
             case "I":
                 cm.loadFile();
                 break;
@@ -26,15 +27,16 @@ public class Main {
                 System.out.println("City: ");
                 String city = sc.nextLine();
                 Long id = cm.addContact(new Contact(name, number, city));
-                System.out.println("New record with ID  " +  id + " has been created!");
+                System.out.println("New record with ID  " + id + " has been created!");
                 break;
             case "R":
                 System.out.println("Record ID: ");
                 Long idr = Long.parseLong(sc.nextLine());
                 cm.deleteContact(idr);
-                System.out.println("New record with ID  " +  idr + " has been removed!");
+                System.out.println("New record with ID  " + idr + " has been removed!");
                 break;
         }
 
     }
+
 }
