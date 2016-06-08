@@ -63,7 +63,7 @@ public class ContactSimpleDAO implements ContactDAO {
     public void toFile() {
         try {
             CSVWriter writer = new CSVWriter(new FileWriter(outputFile, true), ',');
-            String[] a = contacts.toString().split(",");
+            String[] a = contacts.toString().replace("\"", "").split(",");
             writer.writeNext(a);
             writer.close();
         } catch (IOException e) {
