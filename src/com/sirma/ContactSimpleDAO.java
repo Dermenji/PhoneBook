@@ -76,11 +76,11 @@ public class ContactSimpleDAO implements ContactDAO {
         try {
             CSVReader reader = new CSVReader(new FileReader(outputFile),',');
             String[] record = null;
-            reader.readNext();
+           // reader.readNext();
 
             while((record = reader.readNext()) != null){
                 Contact emp = new Contact();
-                emp.setContactId(new Long(record[0]));
+                emp.setContactId(Long.parseLong(record[0]));
                 emp.setName(record[1]);
                 emp.setPhone(record[2]);
                 emp.setCity(record[3]);
