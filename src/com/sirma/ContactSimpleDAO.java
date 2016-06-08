@@ -72,17 +72,25 @@ public class ContactSimpleDAO implements ContactDAO {
     }
 
 
-    public void syncData() {
+    public List<Contact> syncData() {
         try {
-            CSVReader reader = new CSVReader(new FileReader(outputFile));
-            String[] nextLine;
-            while ((nextLine = reader.readNext()) != null) {
-                // nextLine[] is an array of values from the line
-                contacts.add(new Contact(new Long(nextLine[0]), nextLine[1], nextLine[2], nextLine[3]));
+            CSVReader reader = new CSVReader(new FileReader(outputFile),',');
+            String[] record = null;
+            reader.readNext();
+
+            while((record = reader.readNext()) != null){
+                Contact emp = new Contact();
+                emp.setContactId(new Long(record[0]));
+                emp.setName(record[1]);
+                emp.setPhone(record[2]);
+                emp.setCity(record[3]);
+                contacts.add(emp);
             }
+
             reader.close();
         } catch (IOException e) {
             e.printStackTrace();
         }
+        return contacts;
     }
 }
