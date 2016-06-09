@@ -103,21 +103,12 @@ public class ContactSimpleDAO implements ContactDAO {
             for (String line : lines) {
                 line = line.replace("\"", "");
                 String[] result = line.split(",");
-//                for (int i = 0; i< result.length; i++){
-//                    Contact contact = new Contact();
-//                    contact.setContactId(Long.valueOf((result[0])));
-//                    contact.setName(result[1]);
-//                    contact.setPhone(result[2]);
-//                    contact.setCity(result[3]);
-//                    contacts.add(contact);
-//                }
-                //for(Contact contact : contacts){
+                    Contact contact = new Contact();
                     contact.setContactId(Long.valueOf((result[0])));
                     contact.setName(result[1]);
                     contact.setPhone(result[2]);
                     contact.setCity(result[3]);
                     contacts.add(contact);
-               // }
             }
         } catch (Exception e) {
             System.out.println(e.getMessage());
