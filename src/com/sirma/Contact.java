@@ -14,22 +14,22 @@ public class Contact
     }
 
     public Contact(String name, String phone, String city) {
-        this.name = name;
-        this.phone = phone;
-        this.city = city;
+        setName(name);
+        setPhone(phone);
+        setCity(city);
     }
 
     public Contact(Long contactId, String name,  String phone, String city) {
-        this.contactId = contactId;
-        this.name = name;
-        this.phone = phone;
-        this.city = city;
+        setContactId(contactId);
+        setName(name);
+        setPhone(phone);
+        setCity(city);
     }
 
     public Contact(Long contactId, String name,  String phone) {
-        this.contactId = contactId;
-        this.name = name;
-        this.phone = phone;
+        setContactId(contactId);
+        setName(name);
+        setPhone(phone);
     }
 
     public Long getContactId() {
@@ -45,7 +45,7 @@ public class Contact
     }
 
     public void setName(String name) {
-        this.name = name;
+            this.name = name;
     }
 
     public String getPhone() {
