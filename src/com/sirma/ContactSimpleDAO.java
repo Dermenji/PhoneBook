@@ -100,7 +100,7 @@ public class ContactSimpleDAO implements ContactDAO {
         }
     }
 
-
+    @Override
     public void syncData() {
         try {
             List<String> lines = Files.readAllLines(Paths.get(outputFile));
