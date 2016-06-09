@@ -49,6 +49,7 @@ public class ContactSimpleDAO implements ContactDAO {
 
     @Override
     public List<Contact> showContacts() {
+        
         return contacts;
     }
 
@@ -106,6 +107,10 @@ public class ContactSimpleDAO implements ContactDAO {
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
+
+        //for(int i = 0; i < contacts.size(); i++){
+        //    System.out.println(contacts.get(i));
+        //}
     }
 }
 
