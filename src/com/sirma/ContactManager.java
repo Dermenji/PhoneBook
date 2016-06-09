@@ -39,4 +39,8 @@ public class ContactManager {
 
     public void syncData() { dao.syncData(); }
 
+    public boolean isNameExist(String name){return dao.isNameExist(name);}
+
+    public boolean isNumberExist(String number){return dao.isNumberExist(number);}
+
 }
