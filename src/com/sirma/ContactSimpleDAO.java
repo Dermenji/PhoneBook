@@ -1,8 +1,10 @@
 package com.sirma;
 
+import com.opencsv.CSVReader;
 import com.opencsv.CSVWriter;
 
 import java.io.File;
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.file.Files;
@@ -56,21 +58,30 @@ public class ContactSimpleDAO implements ContactDAO {
 
     @Override
     public void loadFile() {
-//        try {
-//            List<String> lines = Files.readAllLines(Paths.get(outputFile));
-//            for (String line : lines) {
-//                line = line.replace("\"", "");
-//                String[] result = line.split(",");
-//                for (String s : result)
-//                    System.out.print(s + "    ");
-//                System.out.println();
-//            }
-//        } catch (Exception e) {
-//            System.out.println(e.getMessage());
-//        }
-        for(Contact c: contacts){
-            System.out.println(c);
-        }
+
+
+for (Contact c: contacts){
+    System.out.println(c);
+}
+
+
+
+
+       /*try {
+            List<String> lines = Files.readAllLines(Paths.get(outputFile));
+            for (String line : lines) {
+                line = line.replace("\"", "");
+                String[] result = line.split(",");
+                for (String s : result)
+                    System.out.print(s + "    ");
+                System.out.println();
+            }
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }*/
+       // for(Contact c: contacts){
+       //     System.out.println(c);
+      //  }
     }
 
     private Long generateContactId() {
@@ -103,42 +114,24 @@ public class ContactSimpleDAO implements ContactDAO {
     @Override
     public void syncData() {
         try {
-            List<String> lines = Files.readAllLines(Paths.get(outputFile));
-            for (String line : lines) {
-                line = line.replace("\"", "");
-                String[] result = line.split(",");
-                    Contact contact = new Contact();
-                    contact.setContactId(Long.valueOf((result[0])));
-                    contact.setName(result[1]);
-                    contact.setPhone(result[2]);
-                    contact.setCity(result[3]);
-                    contacts.add(contact);
+            CSVReader reader = new CSVReader(new FileReader(outputFile),',');
+            String[] record = null;
+            // reader.readNext();
+
+            while((record = reader.readNext()) != null){
+                Contact emp = new Contact();
+                emp.setContactId(Long.parseLong(record[0]));
+                emp.setName(record[1]);
+                emp.setPhone(record[2]);
+                emp.setCity(record[3]);
+                contacts.add(emp);
             }
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
+
+            reader.close();
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 }
-
-
-//        try {
-//            CSVReader reader = new CSVReader(new FileReader(outputFile),',');
-//            String[] record = null;
-//           // reader.readNext();
-//
-//            while((record = reader.readNext()) != null){
-//                Contact emp = new Contact();
-//                emp.setContactId(Long.parseLong(record[0]));
-//                emp.setName(record[1]);
-//                emp.setPhone(record[2]);
-//                emp.setCity(record[3]);
-//                contacts.add(emp);
-//            }
-//
-//            reader.close();
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
-//        return contacts;
 
 
