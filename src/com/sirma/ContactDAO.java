@@ -17,4 +17,8 @@ public interface ContactDAO {
 
     public void loadFile();
     public void syncData();
+
+    public boolean isNameExist(String name);
+
+    public boolean isNumberExist(String number);
 }
