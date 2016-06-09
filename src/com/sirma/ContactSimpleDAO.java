@@ -56,17 +56,20 @@ public class ContactSimpleDAO implements ContactDAO {
 
     @Override
     public void loadFile() {
-        try {
-            List<String> lines = Files.readAllLines(Paths.get(outputFile));
-            for (String line : lines) {
-                line = line.replace("\"", "");
-                String[] result = line.split(",");
-                for (String s : result)
-                    System.out.print(s + "    ");
-                System.out.println();
-            }
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
+//        try {
+//            List<String> lines = Files.readAllLines(Paths.get(outputFile));
+//            for (String line : lines) {
+//                line = line.replace("\"", "");
+//                String[] result = line.split(",");
+//                for (String s : result)
+//                    System.out.print(s + "    ");
+//                System.out.println();
+//            }
+//        } catch (Exception e) {
+//            System.out.println(e.getMessage());
+//        }
+        for(Contact c: contacts){
+            System.out.println(c);
         }
     }
 
@@ -80,15 +83,16 @@ public class ContactSimpleDAO implements ContactDAO {
 
     public void toFile() {
         try {
-            CSVWriter writer = new CSVWriter(new FileWriter(outputFile, true), ',');
+            CSVWriter writer = new CSVWriter(new FileWriter(outputFile, false), ',');
 
             String[] a = new String[4];
             for (Contact c : contacts) {
                 a = new String[]{String.valueOf(c.getContactId()), c.getName(), c.getPhone(), c.getCity()};
+                writer.writeNext(a);
             }
 
 
-            writer.writeNext(a);
+           // writer.writeNext(a);
             //String[] a = contacts.toString().replace("[", "").replace("]", "").split(",");
             writer.close();
         } catch (IOException e) {
@@ -112,10 +116,6 @@ public class ContactSimpleDAO implements ContactDAO {
             }
         } catch (Exception e) {
             System.out.println(e.getMessage());
-        }
-
-        for(Contact c: contacts){
-            System.out.println(c);
         }
     }
 }
