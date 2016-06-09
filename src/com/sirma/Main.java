@@ -7,11 +7,9 @@ import java.util.Scanner;
 public class Main {
 
     public static void main(String[] args) throws IOException {
-        ContactSimpleDAO test = new ContactSimpleDAO();
-        test.syncData();
-
         Scanner sc = new Scanner(System.in);
         ContactManager cm = new ContactManager();
+        cm.syncData();
         System.out.println("Please select action (I, N, R, L, Q): ");
         String choice = sc.nextLine();
 
