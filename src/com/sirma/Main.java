@@ -20,12 +20,36 @@ public class Main {
                     cm.loadFile();
                     break;
                 case "N":
-                    System.out.println("Name: ");
-                    String name = sc.nextLine();
-                    System.out.println("Phone number: ");
-                    String number = sc.nextLine();
-                    System.out.println("City: ");
-                    String city = sc.nextLine();
+                    String name;
+                    String number;
+                    String city;
+                    do{
+                        System.out.println("Name: ");
+                        name = sc.nextLine();
+                        if (name.length() < 30) break;
+                        else {
+                            System.out.println("Name is too big!");
+                        }
+                    } while (true);
+
+                    do {
+                        System.out.println("Phone number: ");
+                        number = sc.nextLine();
+                        if (number.length()<12 && number.length()>3) break;
+                        else {
+                            System.out.println("Not valid number!");
+                        }
+                    } while (true);
+
+                    do {
+                        System.out.println("City: ");
+                        city = sc.nextLine();
+                        if (city.length() < 30) break;
+                        else {
+                            System.out.println("City is too big!");
+                        }
+                    } while (true);
+
                     Long id = cm.addContact(new Contact(name, number, city));
                     System.out.println("New record with ID  " + id + " has been created!");
                     break;
