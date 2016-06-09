@@ -23,22 +23,32 @@ public class Main {
                     String name;
                     String number;
                     String city;
-                    do{
+                    do {
                         System.out.println("Name: ");
                         name = sc.nextLine();
-                        if (name.length() < 30) break;
-                        else {
+                        if (name.length() < 30) {
+                            if (cm.isNameExist(name)) break;
+                            else {
+                                System.out.println("Error: A record with such name already exists!");
+                            }
+                        } else {
                             System.out.println("Name is too big!");
                         }
+
                     } while (true);
 
                     do {
                         System.out.println("Phone number: ");
                         number = sc.nextLine();
-                        if (number.length()<12 && number.length()>3) break;
-                        else {
+                        if (number.length() < 12 && number.length() > 3) {
+                            if (cm.isNumberExist(name)) break;
+                            else {
+                                System.out.println("Error: A record with such number already exists!");
+                            }
+                        } else {
                             System.out.println("Not valid number!");
                         }
+
                     } while (true);
 
                     do {
