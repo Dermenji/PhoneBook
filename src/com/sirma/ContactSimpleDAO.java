@@ -7,13 +7,11 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Paths;
 import java.util.*;
 
 
 public class ContactSimpleDAO implements ContactDAO {
-    String  outputFile = "phonebook.csv";
+    private String outputFile = "phonebook.csv";
     boolean alreadyExists = new File(outputFile).exists();
     private Contact contact;
     private final List<Contact> contacts = new ArrayList<Contact>();
@@ -26,7 +24,6 @@ public class ContactSimpleDAO implements ContactDAO {
         toFile();
         return id;
     }
-
 
     @Override
     public void deleteContact(Long contactId) {
@@ -78,30 +75,9 @@ public class ContactSimpleDAO implements ContactDAO {
 
     @Override
     public void loadFile() {
-
-
-for (Contact c: contacts){
-    System.out.println(c);
-}
-
-
-
-
-       /*try {
-            List<String> lines = Files.readAllLines(Paths.get(outputFile));
-            for (String line : lines) {
-                line = line.replace("\"", "");
-                String[] result = line.split(",");
-                for (String s : result)
-                    System.out.print(s + "    ");
-                System.out.println();
-            }
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
-        }*/
-       // for(Contact c: contacts){
-       //     System.out.println(c);
-      //  }
+        for (Contact c : contacts) {
+            System.out.println(c);
+        }
     }
 
     private Long generateContactId() {
@@ -112,7 +88,7 @@ for (Contact c: contacts){
         return contactId;
     }
 
-    public void toFile() {
+    private  void toFile() {
         try {
             CSVWriter writer = new CSVWriter(new FileWriter(outputFile, false), ',');
 
@@ -122,10 +98,26 @@ for (Contact c: contacts){
                 writer.writeNext(a);
             }
 
-
-           // writer.writeNext(a);
-            //String[] a = contacts.toString().replace("[", "").replace("]", "").split(",");
             writer.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Override
+    public void exportToNewCSVfile(String newFile) {
+        try {
+            CSVWriter writer = new CSVWriter(new FileWriter(newFile, false), ',');
+
+            String[] a = new String[4];
+            Collections.sort(contacts, new SortedByName());
+            for (Contact c : contacts) {
+                a = new String[]{String.valueOf(c.getContactId()), c.getName(), c.getPhone(), c.getCity()};
+                writer.writeNext(a);
+            }
+
+            writer.close();
+            System.out.println("File is exported!");
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -134,11 +126,10 @@ for (Contact c: contacts){
     @Override
     public void syncData() {
         try {
-            CSVReader reader = new CSVReader(new FileReader(outputFile),',');
+            CSVReader reader = new CSVReader(new FileReader(outputFile), ',');
             String[] record = null;
-            // reader.readNext();
 
-            while((record = reader.readNext()) != null){
+            while ((record = reader.readNext()) != null) {
                 Contact emp = new Contact();
                 emp.setContactId(Long.parseLong(record[0]));
                 emp.setName(record[1]);
