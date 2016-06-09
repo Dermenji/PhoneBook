@@ -16,4 +16,5 @@ public interface ContactDAO {
     public List<Contact> showContacts();
 
     public void loadFile();
+    public void syncData();
 }
