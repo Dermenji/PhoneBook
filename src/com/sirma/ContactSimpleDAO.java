@@ -13,6 +13,7 @@ import java.util.*;
 public class ContactSimpleDAO implements ContactDAO {
     String  outputFile = "phonebook.csv";
     boolean alreadyExists = new File(outputFile).exists();
+    private Contact contact;
     private final List<Contact> contacts = new ArrayList<Contact>();
 
     @Override
@@ -49,7 +50,7 @@ public class ContactSimpleDAO implements ContactDAO {
 
     @Override
     public List<Contact> showContacts() {
-        
+
         return contacts;
     }
 
@@ -80,8 +81,15 @@ public class ContactSimpleDAO implements ContactDAO {
     public void toFile() {
         try {
             CSVWriter writer = new CSVWriter(new FileWriter(outputFile, true), ',');
-            String[] a = contacts.toString().replace("[", "").replace("]", "").split(",");
+
+            String[] a = new String[4];
+            for (Contact c : contacts) {
+                a = new String[]{String.valueOf(c.getContactId()), c.getName(), c.getPhone(), c.getCity()};
+            }
+
+
             writer.writeNext(a);
+            //String[] a = contacts.toString().replace("[", "").replace("]", "").split(",");
             writer.close();
         } catch (IOException e) {
             e.printStackTrace();
@@ -95,22 +103,29 @@ public class ContactSimpleDAO implements ContactDAO {
             for (String line : lines) {
                 line = line.replace("\"", "");
                 String[] result = line.split(",");
-                for (int i = 0; i< result.length; i++){
-                    Contact contact = new Contact();
+//                for (int i = 0; i< result.length; i++){
+//                    Contact contact = new Contact();
+//                    contact.setContactId(Long.valueOf((result[0])));
+//                    contact.setName(result[1]);
+//                    contact.setPhone(result[2]);
+//                    contact.setCity(result[3]);
+//                    contacts.add(contact);
+//                }
+                //for(Contact contact : contacts){
                     contact.setContactId(Long.valueOf((result[0])));
                     contact.setName(result[1]);
                     contact.setPhone(result[2]);
                     contact.setCity(result[3]);
                     contacts.add(contact);
-                }
+               // }
             }
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
 
-        //for(int i = 0; i < contacts.size(); i++){
-        //    System.out.println(contacts.get(i));
-        //}
+        for(Contact c: contacts){
+            System.out.println(c);
+        }
     }
 }
 
