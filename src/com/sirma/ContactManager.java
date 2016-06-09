@@ -3,9 +3,6 @@ package com.sirma;
 import java.io.IOException;
 import java.util.List;
 
-/**
- * Created by Alex on 6/8/2016.
- */
 public class ContactManager {
     private ContactDAO dao;
 
@@ -37,10 +34,19 @@ public class ContactManager {
         dao.loadFile();
     }
 
-    public void syncData() { dao.syncData(); }
+    public void syncData() {
+        dao.syncData();
+    }
 
-    public boolean isNameExist(String name){return dao.isNameExist(name);}
+    public boolean isNameExist(String name) {
+        return dao.isNameExist(name);
+    }
 
-    public boolean isNumberExist(String number){return dao.isNumberExist(number);}
+    public boolean isNumberExist(String number) {
+        return dao.isNumberExist(number);
+    }
 
+    public void exportToNewCSVfile(String newFile) {
+        dao.exportToNewCSVfile(newFile);
+    }
 }
