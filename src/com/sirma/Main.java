@@ -73,8 +73,5 @@ public class Main {
                     cm.exportToNewCSVfile("export.csv");
             }
         } while (!choice.equals("Q"));
-
-
     }
-
 }
