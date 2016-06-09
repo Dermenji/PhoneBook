@@ -1,10 +1,6 @@
 package com.sirma;
 
-/**
- * Created by Alex on 6/8/2016.
- */
-public class Contact
-{
+public class Contact {
     private Long contactId;
     private String name;
     private String phone;
@@ -19,14 +15,14 @@ public class Contact
         setCity(city);
     }
 
-    public Contact(Long contactId, String name,  String phone, String city) {
+    public Contact(Long contactId, String name, String phone, String city) {
         setContactId(contactId);
         setName(name);
         setPhone(phone);
         setCity(city);
     }
 
-    public Contact(Long contactId, String name,  String phone) {
+    public Contact(Long contactId, String name, String phone) {
         setContactId(contactId);
         setName(name);
         setPhone(phone);
@@ -45,7 +41,7 @@ public class Contact
     }
 
     public void setName(String name) {
-            this.name = name;
+        this.name = name;
     }
 
     public String getPhone() {
