@@ -11,9 +11,9 @@ public interface ContactDAO {
 
     Contact getContact(Long contactId);
 
-    List<Contact> showContacts();
+    List<Contact> getContacts();
 
-    void loadFile();
+    void printContacts();
 
     void syncData();
 
