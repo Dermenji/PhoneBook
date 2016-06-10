@@ -68,13 +68,13 @@ public class ContactSimpleDAO implements ContactDAO {
     }
 
     @Override
-    public List<Contact> showContacts() {
+    public List<Contact> getContacts() {
 
         return contacts;
     }
 
     @Override
-    public void loadFile() {
+    public void printContacts() {
         for (Contact c : contacts) {
             System.out.println(c);
         }
