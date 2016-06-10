@@ -3,26 +3,26 @@ package com.sirma;
 public class Contact {
     private Long contactId;
     private String name;
-    private String phone;
+    private int phone;
     private String city;
 
     public Contact() {
     }
 
-    public Contact(String name, String phone, String city) {
+    public Contact(String name, int phone, String city) {
         setName(name);
         setPhone(phone);
         setCity(city);
     }
 
-    public Contact(Long contactId, String name, String phone, String city) {
+    public Contact(Long contactId, String name, int phone, String city) {
         setContactId(contactId);
         setName(name);
         setPhone(phone);
         setCity(city);
     }
 
-    public Contact(Long contactId, String name, String phone) {
+    public Contact(Long contactId, String name, int phone) {
         setContactId(contactId);
         setName(name);
         setPhone(phone);
@@ -44,11 +44,11 @@ public class Contact {
         this.name = name;
     }
 
-    public String getPhone() {
+    public int getPhone() {
         return phone;
     }
 
-    public void setPhone(String phone) {
+    public void setPhone(int phone) {
         this.phone = phone;
     }
 
