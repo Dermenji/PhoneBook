@@ -88,7 +88,7 @@ public class ContactSimpleDAO implements ContactDAO {
         return contactId;
     }
 
-    private  void toFile() {
+    private void toFile() {
         try {
             CSVWriter writer = new CSVWriter(new FileWriter(outputFile, false), ',');
 
