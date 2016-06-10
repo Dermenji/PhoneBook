@@ -26,12 +26,12 @@ public class ContactManager {
     }
 
     // Получение списка контактов
-    public List<Contact> showContacts() {
-        return dao.showContacts();
+    public List<Contact> getContacts() {
+        return dao.getContacts();
     }
 
-    public void loadFile() {
-        dao.loadFile();
+    public void printContacts() {
+        dao.printContacts();
     }
 
     public void syncData() {
