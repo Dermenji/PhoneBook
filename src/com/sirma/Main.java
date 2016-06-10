@@ -2,6 +2,8 @@ package com.sirma;
 
 
 import java.io.IOException;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.Scanner;
 
 public class Main {
@@ -13,11 +15,11 @@ public class Main {
         cm.syncData();
         do {
             System.out.println("Please select action (I, N, R, L, E, Q): ");
-            choice = sc.nextLine();
+            choice = sc.nextLine().trim();
 
             switch (choice) {
                 case "I":
-                    cm.loadFile();
+                    cm.printContacts();
                     break;
                 case "N":
                     String name;
@@ -40,6 +42,7 @@ public class Main {
                     do {
                         System.out.println("Phone number: ");
                         number = sc.nextLine();
+
                         if (number.length() < 12 && number.length() > 3) {
                             if (cm.isNumberExist(name)) break;
                             else {
@@ -71,6 +74,35 @@ public class Main {
                     break;
                 case "E":
                     cm.exportToNewCSVfile("export.csv");
+                    break;
+                case "L":
+                    Collections.reverse(cm.getContacts());
+                    cm.printContacts();
+                    break;
+                case "L:name":
+                    Collections.sort(cm.getContacts(), new SortedByName());
+                    cm.printContacts();
+                    break;
+                case "L:name!":
+                    Collections.sort(cm.getContacts(), new SortedByName().reversed());
+                    cm.printContacts();
+                    break;
+                case "L:phone":
+                    Collections.sort(cm.getContacts(), new SortedByPhone());
+                    cm.printContacts();
+                    break;
+                case "L:phone!":
+                    Collections.sort(cm.getContacts(), new SortedByPhone().reversed());
+                    cm.printContacts();
+                    break;
+                case "L:city":
+                    Collections.sort(cm.getContacts(), new SortedByCity());
+                    cm.printContacts();
+                    break;
+                case "L:city!":
+                    Collections.sort(cm.getContacts(), new SortedByCity().reversed());
+                    cm.printContacts();
+                    break;
             }
         } while (!choice.equals("Q"));
     }

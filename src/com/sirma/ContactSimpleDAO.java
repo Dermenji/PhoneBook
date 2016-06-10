@@ -94,7 +94,7 @@ public class ContactSimpleDAO implements ContactDAO {
 
             String[] a = new String[4];
             for (Contact c : contacts) {
-                a = new String[]{String.valueOf(c.getContactId()), c.getName(), c.getPhone(), c.getCity()};
+                a = new String[]{String.valueOf(c.getContactId()), c.getName(), String.valueOf(c.getPhone()), c.getCity()};
                 writer.writeNext(a);
             }
 
@@ -112,7 +112,7 @@ public class ContactSimpleDAO implements ContactDAO {
             String[] a = new String[4];
             Collections.sort(contacts, new SortedByName());
             for (Contact c : contacts) {
-                a = new String[]{String.valueOf(c.getContactId()), c.getName(), c.getPhone(), c.getCity()};
+                a = new String[]{String.valueOf(c.getContactId()), c.getName(), String.valueOf(c.getPhone()), c.getCity()};
                 writer.writeNext(a);
             }
 
