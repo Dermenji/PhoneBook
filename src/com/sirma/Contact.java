@@ -63,6 +63,6 @@ public class Contact {
     @Override
     public String toString() {
 
-        return contactId + "," + name + "," + phone + "," + city;
+        return "[" + contactId + "]" + "    " + name + "    " + phone + "   " + city;
     }
 }
