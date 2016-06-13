@@ -10,32 +10,20 @@ public class ContactManager {
         dao = ContactDAOFactory.getContactDAO();
     }
 
-    // Добавление контакта - возвращает ID добавленного контакта
     public Long addContact(Contact contact) throws IOException {
         return dao.addContact(contact);
     }
 
-    // Удаление контакта по его ID
     public void deleteContact(Long contactId) {
         dao.deleteContact(contactId);
     }
 
-    // Получение одного контакта
-    public Contact getContact(Long contactId) {
-        return dao.getContact(contactId);
-    }
-
-    // Получение списка контактов
     public List<Contact> getContacts() {
         return dao.getContacts();
     }
 
-    public void printContacts() {
-        dao.printContacts();
-    }
-
-    public void syncData() {
-        dao.syncData();
+    public void loadFromFileAndPrint() {
+        dao.loadFromFileAndPrint();
     }
 
     public boolean isNameExist(String name) {
@@ -48,5 +36,9 @@ public class ContactManager {
 
     public void exportToNewCSVfile(String newFile) {
         dao.exportToNewCSVfile(newFile);
+    }
+
+    public void printContacts() {
+        dao.printContacts();
     }
 }

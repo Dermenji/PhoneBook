@@ -21,7 +21,6 @@ public class ContactSimpleDAO implements ContactDAO {
         Long id = generateContactId();
         contact.setContactId(id);
         contacts.add(contact);
-        toFile();
         return id;
     }
 
@@ -34,10 +33,8 @@ public class ContactSimpleDAO implements ContactDAO {
                 it.remove();
             }
         }
-        toFile();
     }
 
-    @Override
     public Contact getContact(Long contactId) {
         for (Contact contact : contacts) {
             if (contact.getContactId().equals(contactId)) {
@@ -88,22 +85,6 @@ public class ContactSimpleDAO implements ContactDAO {
         return contactId;
     }
 
-    private void toFile() {
-        try {
-            CSVWriter writer = new CSVWriter(new FileWriter(outputFile, false), ',');
-
-            String[] a = new String[4];
-            for (Contact c : contacts) {
-                a = new String[]{String.valueOf(c.getContactId()), c.getName(), String.valueOf(c.getPhone()), c.getCity()};
-                writer.writeNext(a);
-            }
-
-            writer.close();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
     @Override
     public void exportToNewCSVfile(String newFile) {
         try {
@@ -124,7 +105,7 @@ public class ContactSimpleDAO implements ContactDAO {
     }
 
     @Override
-    public void syncData() {
+    public void loadFromFileAndPrint() {
         try {
             CSVReader reader = new CSVReader(new FileReader(outputFile), ',');
             String[] record = null;
@@ -136,6 +117,7 @@ public class ContactSimpleDAO implements ContactDAO {
                 emp.setPhone(record[2]);
                 emp.setCity(record[3]);
                 contacts.add(emp);
+                System.out.println(record[0] + ", " + record[1] + ", " + record[2] + ", " + record[3]);
             }
 
             reader.close();
