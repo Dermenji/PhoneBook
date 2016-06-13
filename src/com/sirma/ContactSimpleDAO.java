@@ -3,7 +3,6 @@ package com.sirma;
 import com.opencsv.CSVReader;
 import com.opencsv.CSVWriter;
 
-import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -12,9 +11,7 @@ import java.util.*;
 
 public class ContactSimpleDAO implements ContactDAO {
     private String outputFile = "phonebook.csv";
-    boolean alreadyExists = new File(outputFile).exists();
-    private Contact contact;
-    private final List<Contact> contacts = new ArrayList<Contact>();
+    private final List<Contact> contacts = new ArrayList<>();
 
     @Override
     public Long addContact(Contact contact) {
@@ -35,7 +32,7 @@ public class ContactSimpleDAO implements ContactDAO {
         }
     }
 
-    public Contact getContact(Long contactId) {
+    private Contact getContact(Long contactId) {
         for (Contact contact : contacts) {
             if (contact.getContactId().equals(contactId)) {
                 return contact;
@@ -72,9 +69,7 @@ public class ContactSimpleDAO implements ContactDAO {
 
     @Override
     public void printContacts() {
-        for (Contact c : contacts) {
-            System.out.println(c);
-        }
+        contacts.forEach(System.out::println);
     }
 
     private Long generateContactId() {
@@ -90,7 +85,7 @@ public class ContactSimpleDAO implements ContactDAO {
         try {
             CSVWriter writer = new CSVWriter(new FileWriter(newFile, false), ',');
 
-            String[] a = new String[4];
+            String[] a;
             Collections.sort(contacts, new SortedByName());
             for (Contact c : contacts) {
                 a = new String[]{String.valueOf(c.getContactId()), c.getName(), String.valueOf(c.getPhone()), c.getCity()};
@@ -108,7 +103,7 @@ public class ContactSimpleDAO implements ContactDAO {
     public void loadFromFileAndPrint() {
         try {
             CSVReader reader = new CSVReader(new FileReader(outputFile), ',');
-            String[] record = null;
+            String[] record;
 
             while ((record = reader.readNext()) != null) {
                 Contact emp = new Contact();
