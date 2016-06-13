@@ -2,9 +2,6 @@ package com.sirma;
 
 import java.util.Comparator;
 
-/**
- * Created by fns02 on 6/9/2016.
- */
 public class SortedByName implements Comparator<Contact> {
     @Override
     public int compare(Contact o1, Contact o2) {
