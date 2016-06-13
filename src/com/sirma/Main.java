@@ -12,14 +12,14 @@ public class Main {
         Scanner sc = new Scanner(System.in);
         String choice;
         ContactManager cm = new ContactManager();
-        cm.syncData();
+
         do {
             System.out.println("Please select action (I, N, R, L, E, Q): ");
             choice = sc.nextLine().trim();
 
             switch (choice) {
                 case "I":
-                    cm.printContacts();
+                    cm.loadFromFileAndPrint();
                     break;
                 case "N":
                     String name;
