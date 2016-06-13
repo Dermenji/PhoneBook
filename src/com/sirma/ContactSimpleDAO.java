@@ -102,7 +102,7 @@ public class ContactSimpleDAO implements ContactDAO {
     @Override
     public void loadFromFileAndPrint() {
         try {
-            CSVReader reader = new CSVReader(new FileReader(outputFile), ',');
+            CSVReader reader = new CSVReader(new FileReader(outputFile));
             String[] record;
 
             while ((record = reader.readNext()) != null) {
