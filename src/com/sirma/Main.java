@@ -102,8 +102,10 @@ public class Main {
                 case "L:city!":
                     Collections.sort(cm.getContacts(), new SortedByCity().reversed());
                     cm.printContacts();
+
                     break;
             }
         } while (!choice.equals("Q"));
+        System.out.println("Bye!");
     }
 }
