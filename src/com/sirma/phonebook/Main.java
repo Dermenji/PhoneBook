@@ -41,28 +41,30 @@ public class Main {
 
                     do {
                         System.out.print("Phone number: ");
-                        
-                        if(!sc.hasNextLong()){
-                            sc.next();
-                        } else number = sc.nextLong();
 
-                        lengthNum = String.valueOf(number);
+                        if(sc.hasNextLong()){
+                            number = sc.nextLong();
+                            lengthNum = String.valueOf(number);
 
-                        if (lengthNum.length() <= 12 && lengthNum.length() >= 3) {
-                            if (cm.isNumberExist(number)) {
-                                break;
-                            }
-                            else {
-                                System.out.println("Error: A record with such number already exists!");
+                            if (lengthNum.length() <= 12 && lengthNum.length() >= 3) {
+                                if (cm.isNumberExist(number)) {
+                                    break;
+                                }
+                                else {
+                                    System.out.println("Error: A record with such number already exists!");
+                                }
+                            } else {
+                                System.out.println("Not valid number!");
                             }
                         } else {
-                            System.out.println("Not valid number!");
+                            System.out.println("Is not a number!");
+                            sc.next();
                         }
-
-                    } while (true);
+                    }  while (true);
 
                     do {
                         System.out.print("City: ");
+
                         city = sc.nextLine();
                         if (city.length() < 30) break;
                         else {
