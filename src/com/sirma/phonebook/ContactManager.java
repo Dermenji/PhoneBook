@@ -26,12 +26,12 @@ public class ContactManager {
         dao.loadFromFileAndPrint();
     }
 
-    public boolean isNameExist(String name) {
-        return dao.isNameExist(name);
+    public boolean doesNameExist(String name) {
+        return dao.doesNameExist(name);
     }
 
-    public boolean isNumberExist(long number) {
-        return dao.isNumberExist(number);
+    public boolean doesNumberExist(long number) {
+        return dao.doesNumberExist(number);
     }
 
     public void exportToNewCSVfile(String newFile) {
