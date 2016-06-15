@@ -1,4 +1,4 @@
-package com.sirma;
+package com.sirma.phonebook;
 
 import java.util.Comparator;
 
@@ -6,8 +6,8 @@ import java.util.Comparator;
 public class SortedByPhone implements Comparator<Contact> {
     @Override
     public int compare(Contact o1, Contact o2) {
-        Long phone1 = Long.valueOf(o1.getPhone());
-        Long phone2 = Long.valueOf(o2.getPhone());
+        long phone1 = o1.getPhone();
+        long phone2 = o2.getPhone();
 
         if (phone1 > phone2) {
             return 1;

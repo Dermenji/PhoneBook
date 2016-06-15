@@ -1,4 +1,4 @@
-package com.sirma;
+package com.sirma.phonebook;
 
 import java.io.IOException;
 import java.util.List;
@@ -14,7 +14,7 @@ public class ContactManager {
         return dao.addContact(contact);
     }
 
-    public void deleteContact(Long contactId) {
+    public void deleteContact(long contactId) {
         dao.deleteContact(contactId);
     }
 
@@ -30,7 +30,7 @@ public class ContactManager {
         return dao.isNameExist(name);
     }
 
-    public boolean isNumberExist(String number) {
+    public boolean isNumberExist(long number) {
         return dao.isNumberExist(number);
     }
 

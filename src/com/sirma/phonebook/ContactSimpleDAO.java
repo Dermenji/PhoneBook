@@ -1,4 +1,4 @@
-package com.sirma;
+package com.sirma.phonebook;
 
 import com.opencsv.CSVReader;
 import com.opencsv.CSVWriter;
@@ -15,14 +15,14 @@ public class ContactSimpleDAO implements ContactDAO {
 
     @Override
     public Long addContact(Contact contact) {
-        Long id = generateContactId();
+        long id = generateContactId();
         contact.setContactId(id);
         contacts.add(contact);
         return id;
     }
 
     @Override
-    public void deleteContact(Long contactId) {
+    public void deleteContact(long contactId) {
         for (Iterator<Contact> it = contacts.iterator();
              it.hasNext(); ) {
             Contact cnt = it.next();
@@ -32,7 +32,7 @@ public class ContactSimpleDAO implements ContactDAO {
         }
     }
 
-    private Contact getContact(Long contactId) {
+    private Contact getContact(long contactId) {
         for (Contact contact : contacts) {
             if (contact.getContactId().equals(contactId)) {
                 return contact;
@@ -52,9 +52,9 @@ public class ContactSimpleDAO implements ContactDAO {
     }
 
     @Override
-    public boolean isNumberExist(String number) {
+    public boolean isNumberExist(long number) {
         for (Contact contact : contacts) {
-            if (contact.getPhone().equals(number)) {
+            if (contact.getPhone()==(number)) {
                 return false;
             }
         }
@@ -72,8 +72,8 @@ public class ContactSimpleDAO implements ContactDAO {
         contacts.forEach(System.out::println);
     }
 
-    private Long generateContactId() {
-        Long contactId = Math.round(Math.random() * 1000 + System.currentTimeMillis());
+    private long generateContactId() {
+        long contactId = Math.round(Math.random() * 1000 + System.currentTimeMillis());
         while (getContact(contactId) != null) {
             contactId = Math.round(Math.random() * 1000 + System.currentTimeMillis());
         }
@@ -109,7 +109,7 @@ public class ContactSimpleDAO implements ContactDAO {
                 Contact emp = new Contact();
                 emp.setContactId(Long.parseLong(record[0]));
                 emp.setName(record[1]);
-                emp.setPhone(record[2]);
+                emp.setPhone(Long.parseLong(record[2]));
                 emp.setCity(record[3]);
                 contacts.add(emp);
                 System.out.println(record[0] + ", " + record[1] + ", " + record[2] + ", " + record[3]);

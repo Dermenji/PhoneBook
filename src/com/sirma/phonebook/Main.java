@@ -1,9 +1,8 @@
-package com.sirma;
+package com.sirma.phonebook;
 
 
 import java.io.IOException;
 import java.util.Collections;
-import java.util.Comparator;
 import java.util.Scanner;
 
 public class Main {
@@ -15,7 +14,7 @@ public class Main {
 
         do {
             System.out.println("Please select action (I, N, R, L, E, Q): ");
-            choice = sc.nextLine().trim();
+            choice = sc.nextLine().trim().toUpperCase();
 
             switch (choice) {
                 case "I":
@@ -23,11 +22,12 @@ public class Main {
                     break;
                 case "N":
                     String name;
-                    String number;
+                    long number = 0;
+                    String lengthNum;
                     String city;
                     do {
-                        System.out.println("Name: ");
-                        name = sc.nextLine();
+                        System.out.print("Name: ");
+                        name = sc.nextLine().trim();
                         if (name.length() < 30) {
                             if (cm.isNameExist(name)) break;
                             else {
@@ -40,11 +40,18 @@ public class Main {
                     } while (true);
 
                     do {
-                        System.out.println("Phone number: ");
-                        number = sc.nextLine();
+                        System.out.print("Phone number: ");
+                        
+                        if(!sc.hasNextLong()){
+                            sc.next();
+                        } else number = sc.nextLong();
 
-                        if (number.length() < 12 && number.length() > 3) {
-                            if (cm.isNumberExist(name)) break;
+                        lengthNum = String.valueOf(number);
+
+                        if (lengthNum.length() <= 12 && lengthNum.length() >= 3) {
+                            if (cm.isNumberExist(number)) {
+                                break;
+                            }
                             else {
                                 System.out.println("Error: A record with such number already exists!");
                             }
@@ -55,22 +62,22 @@ public class Main {
                     } while (true);
 
                     do {
-                        System.out.println("City: ");
+                        System.out.print("City: ");
                         city = sc.nextLine();
                         if (city.length() < 30) break;
                         else {
-                            System.out.println("City is too big!");
+                            System.out.println("City name should be less than 30 characters");
                         }
                     } while (true);
 
-                    Long id = cm.addContact(new Contact(name, number, city));
+                    long id = cm.addContact(new Contact(name, number, city));
                     System.out.println("New record with ID  " + id + " has been created!");
                     break;
                 case "R":
-                    System.out.println("Record ID: ");
-                    Long idr = Long.parseLong(sc.nextLine());
+                    System.out.print("Record ID: ");
+                    long idr = Long.parseLong(sc.nextLine());
                     cm.deleteContact(idr);
-                    System.out.println("New record with ID  " + idr + " has been removed!");
+                    System.out.println("Record with ID  " + idr + " has been removed!");
                     break;
                 case "E":
                     cm.exportToNewCSVfile("export.csv");
@@ -79,27 +86,27 @@ public class Main {
                     Collections.reverse(cm.getContacts());
                     cm.printContacts();
                     break;
-                case "L:name":
+                case "L:NAME":
                     Collections.sort(cm.getContacts(), new SortedByName());
                     cm.printContacts();
                     break;
-                case "L:name!":
+                case "L:NAME!":
                     Collections.sort(cm.getContacts(), new SortedByName().reversed());
                     cm.printContacts();
                     break;
-                case "L:phone":
+                case "L:PHONE":
                     Collections.sort(cm.getContacts(), new SortedByPhone());
                     cm.printContacts();
                     break;
-                case "L:phone!":
+                case "L:PHONE!":
                     Collections.sort(cm.getContacts(), new SortedByPhone().reversed());
                     cm.printContacts();
                     break;
-                case "L:city":
+                case "L:CITY":
                     Collections.sort(cm.getContacts(), new SortedByCity());
                     cm.printContacts();
                     break;
-                case "L:city!":
+                case "L:CITY!":
                     Collections.sort(cm.getContacts(), new SortedByCity().reversed());
                     cm.printContacts();
                     break;

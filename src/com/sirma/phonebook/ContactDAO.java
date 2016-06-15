@@ -1,4 +1,4 @@
-package com.sirma;
+package com.sirma.phonebook;
 
 import java.io.IOException;
 import java.util.List;
@@ -7,7 +7,7 @@ interface ContactDAO {
 
     Long addContact(Contact contact) throws IOException;
 
-    void deleteContact(Long contactId);
+    void deleteContact(long contactId);
 
     List<Contact> getContacts();
 
@@ -17,7 +17,7 @@ interface ContactDAO {
 
     boolean isNameExist(String name);
 
-    boolean isNumberExist(String number);
+    boolean isNumberExist(long number);
 
     void exportToNewCSVfile(String newFile);
 }

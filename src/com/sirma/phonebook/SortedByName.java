@@ -1,4 +1,4 @@
-package com.sirma;
+package com.sirma.phonebook;
 
 import java.util.Comparator;
 

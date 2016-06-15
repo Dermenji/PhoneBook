@@ -1,28 +1,28 @@
-package com.sirma;
+package com.sirma.phonebook;
 
 public class Contact {
-    private Long contactId;
+    private long contactId;
     private String name;
-    private String phone;
+    private long phone;
     private String city;
 
     public Contact() {
     }
 
-    public Contact(String name, String phone, String city) {
+    public Contact(String name, long phone, String city) {
         setName(name);
         setPhone(phone);
         setCity(city);
     }
 
-    public Contact(Long contactId, String name, String phone, String city) {
+    public Contact(long contactId, String name, long phone, String city) {
         setContactId(contactId);
         setName(name);
         setPhone(phone);
         setCity(city);
     }
 
-    public Contact(Long contactId, String name, String phone) {
+    public Contact(long contactId, String name, long phone) {
         setContactId(contactId);
         setName(name);
         setPhone(phone);
@@ -44,11 +44,11 @@ public class Contact {
         this.name = name;
     }
 
-    public String getPhone() {
+    public long getPhone() {
         return phone;
     }
 
-    public void setPhone(String phone) {
+    public void setPhone(long phone) {
         this.phone = phone;
     }
 
