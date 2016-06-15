@@ -42,15 +42,14 @@ public class Main {
                     do {
                         System.out.print("Phone number: ");
 
-                        if(sc.hasNextLong()){
+                        if (sc.hasNextLong()) {
                             number = sc.nextLong();
                             lengthNum = String.valueOf(number);
 
                             if (lengthNum.length() <= 12 && lengthNum.length() >= 3) {
                                 if (cm.isNumberExist(number)) {
                                     break;
-                                }
-                                else {
+                                } else {
                                     System.out.println("Error: A record with such number already exists!");
                                 }
                             } else {
@@ -60,12 +59,12 @@ public class Main {
                             System.out.println("Is not a number!");
                             sc.next();
                         }
-                    }  while (true);
+                    } while (true);
 
                     do {
                         System.out.print("City: ");
 
-                        city = sc.nextLine();
+                        city = sc.next();
                         if (city.length() < 30) break;
                         else {
                             System.out.println("City name should be less than 30 characters");
