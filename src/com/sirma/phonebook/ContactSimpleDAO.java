@@ -42,7 +42,7 @@ public class ContactSimpleDAO implements ContactDAO {
     }
 
     @Override
-    public boolean isNameExist(String name) {
+    public boolean doesNameExist(String name) {
         for (Contact contact : contacts) {
             if (contact.getName().equals(name)) {
                 return false;
@@ -52,9 +52,9 @@ public class ContactSimpleDAO implements ContactDAO {
     }
 
     @Override
-    public boolean isNumberExist(long number) {
+    public boolean doesNumberExist(long number) {
         for (Contact contact : contacts) {
-            if (contact.getPhone()==(number)) {
+            if (contact.getPhone() == (number)) {
                 return false;
             }
         }
@@ -95,7 +95,7 @@ public class ContactSimpleDAO implements ContactDAO {
             writer.close();
             System.out.println("File is exported!");
         } catch (IOException e) {
-            e.printStackTrace();
+            System.out.println("Error: can not export to new CSV file!");
         }
     }
 
@@ -117,7 +117,7 @@ public class ContactSimpleDAO implements ContactDAO {
 
             reader.close();
         } catch (IOException e) {
-            e.printStackTrace();
+            System.out.println("Error: can not load from file");
         }
     }
 }
