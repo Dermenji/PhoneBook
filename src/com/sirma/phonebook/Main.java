@@ -22,14 +22,14 @@ public class Main {
                     break;
                 case "N":
                     String name;
-                    long number = 0;
+                    long number;
                     String lengthNum;
                     String city;
                     do {
                         System.out.print("Name: ");
                         name = sc.nextLine().trim();
                         if (name.length() < 30) {
-                            if (cm.isNameExist(name)) break;
+                            if (cm.doesNameExist(name)) break;
                             else {
                                 System.out.println("Error: A record with such name already exists!");
                             }
@@ -47,7 +47,8 @@ public class Main {
                             lengthNum = String.valueOf(number);
 
                             if (lengthNum.length() <= 12 && lengthNum.length() >= 3) {
-                                if (cm.isNumberExist(number)) {
+                                if (cm.doesNumberExist(number)) {
+                                    sc.nextLine();
                                     break;
                                 } else {
                                     System.out.println("Error: A record with such number already exists!");
@@ -64,7 +65,7 @@ public class Main {
                     do {
                         System.out.print("City: ");
 
-                        city = sc.next();
+                        city = sc.nextLine();
                         if (city.length() < 30) break;
                         else {
                             System.out.println("City name should be less than 30 characters");
