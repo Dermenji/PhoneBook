@@ -8,6 +8,10 @@ public class SortedByCity implements Comparator<Contact> {
         String str1 = o1.getCity();
         String str2 = o2.getCity();
 
-        return str1.compareTo(str2);
+        int compareCities = str1.compareTo(str2);
+
+        if (compareCities == 0) compareCities = (int) (o1.getContactId() - o2.getContactId());
+        return compareCities;
+
     }
 }
