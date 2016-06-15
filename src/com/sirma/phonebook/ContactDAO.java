@@ -15,9 +15,9 @@ interface ContactDAO {
 
     void loadFromFileAndPrint();
 
-    boolean isNameExist(String name);
+    boolean doesNameExist(String name);
 
-    boolean isNumberExist(long number);
+    boolean doesNumberExist(long number);
 
     void exportToNewCSVfile(String newFile);
 }
