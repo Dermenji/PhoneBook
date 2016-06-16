@@ -13,7 +13,4 @@ interface ContactDAO {
 
     void printContacts();
 
-    boolean doesNameExist(String name);
-
-    boolean doesNumberExist(long number);
 }
