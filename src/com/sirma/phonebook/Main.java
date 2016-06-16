@@ -68,13 +68,20 @@ public class Main {
             System.out.print("Record ID: ");
             if (sc.hasNextLong()){
                 idr = sc.nextLong();
-                cm.deleteContact(idr);
-                sc.nextLine();
-                break;
+
+                if(!cm.doesIdExist(idr)){
+                    cm.deleteContact(idr);
+                    sc.nextLine();
+                    break;
+                } else {
+                    System.out.println("Id " + idr + " do not exist!");
+                }
+
             } else {
                 System.out.println("Is not a number!");
                 sc.next();
             }
+
         } while (true);
 
         System.out.println("Record with ID  " + idr + " has been removed!");

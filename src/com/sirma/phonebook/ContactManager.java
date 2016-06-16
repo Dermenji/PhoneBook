@@ -39,6 +39,12 @@ public class ContactManager {
         } else return false;
 
     }
+    public boolean doesIdExist(long id) {
+        if(null == dao.getContactId(id)){
+            return true;
+        } else return false;
+
+    }
 
     public boolean doesNumberExist(long number) {
         if(null == dao.getContactNumber(number)){

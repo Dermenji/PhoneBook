@@ -15,4 +15,6 @@ interface ContactDAO {
 
     Contact getContactNumber(long number);
 
+    Contact getContactId(long contactId);
+
 }
