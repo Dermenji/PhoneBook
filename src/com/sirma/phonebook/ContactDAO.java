@@ -13,11 +13,7 @@ interface ContactDAO {
 
     void printContacts();
 
-    void loadFromFileAndPrint();
-
     boolean doesNameExist(String name);
 
     boolean doesNumberExist(long number);
-
-    void exportToNewCSVfile(String newFile);
 }
