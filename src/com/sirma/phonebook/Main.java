@@ -21,65 +21,10 @@ public class Main {
                     cm.loadFromFileAndPrint();
                     break;
                 case "N":
-                    String name;
-                    long number;
-                    String lengthNum;
-                    String city;
-                    do {
-                        System.out.print("Name: ");
-                        name = sc.nextLine().trim();
-                        if (name.length() < 30) {
-                            if (cm.doesNameExist(name)) break;
-                            else {
-                                System.out.println("Error: A record with such name already exists!");
-                            }
-                        } else {
-                            System.out.println("Name is too big!");
-                        }
-
-                    } while (true);
-
-                    do {
-                        System.out.print("Phone number: ");
-
-                        if (sc.hasNextLong()) {
-                            number = sc.nextLong();
-                            lengthNum = String.valueOf(number);
-
-                            if (lengthNum.length() <= 12 && lengthNum.length() >= 3) {
-                                if (cm.doesNumberExist(number)) {
-                                    sc.nextLine();
-                                    break;
-                                } else {
-                                    System.out.println("Error: A record with such number already exists!");
-                                }
-                            } else {
-                                System.out.println("Not valid number!");
-                            }
-                        } else {
-                            System.out.println("Is not a number!");
-                            sc.next();
-                        }
-                    } while (true);
-
-                    do {
-                        System.out.print("City: ");
-
-                        city = sc.nextLine();
-                        if (city.length() < 30) break;
-                        else {
-                            System.out.println("City name should be less than 30 characters");
-                        }
-                    } while (true);
-
-                    long id = cm.addContact(new Contact(name, number, city));
-                    System.out.println("New record with ID  " + id + " has been created!");
+                    newContact(sc, cm);
                     break;
                 case "R":
-                    System.out.print("Record ID: ");
-                    long idr = Long.parseLong(sc.nextLine());
-                    cm.deleteContact(idr);
-                    System.out.println("Record with ID  " + idr + " has been removed!");
+                    removeContact(sc, cm);
                     break;
                 case "E":
                     cm.exportToNewCSVfile("export.csv");
@@ -115,5 +60,79 @@ public class Main {
             }
         } while (!choice.equals("Q"));
         System.out.println("Bye!");
+    }
+
+    private static void removeContact(Scanner sc, ContactManager cm) {
+        long idr;
+        do{
+            System.out.print("Record ID: ");
+            if (sc.hasNextLong()){
+                idr = sc.nextLong();
+                cm.deleteContact(idr);
+                sc.nextLine();
+                break;
+            } else {
+                System.out.println("Is not a number!");
+                sc.next();
+            }
+        } while (true);
+
+        System.out.println("Record with ID  " + idr + " has been removed!");
+    }
+
+    private static void newContact(Scanner sc, ContactManager cm) throws IOException {
+        String name;
+        long number;
+        String lengthNum;
+        String city;
+        do {
+            System.out.print("Name: ");
+            name = sc.nextLine().trim();
+            if (name.length() < 30) {
+                if (cm.doesNameExist(name)) break;
+                else {
+                    System.out.println("Error: A record with such name already exists!");
+                }
+            } else {
+                System.out.println("Name is too big!");
+            }
+
+        } while (true);
+
+        do {
+            System.out.print("Phone number: ");
+
+            if (sc.hasNextLong()) {
+                number = sc.nextLong();
+                lengthNum = String.valueOf(number);
+
+                if (lengthNum.length() <= 12 && lengthNum.length() >= 3) {
+                    if (cm.doesNumberExist(number)) {
+                        sc.nextLine();
+                        break;
+                    } else {
+                        System.out.println("Error: A record with such number already exists!");
+                    }
+                } else {
+                    System.out.println("Not valid number!");
+                }
+            } else {
+                System.out.println("Is not a number!");
+                sc.next();
+            }
+        } while (true);
+
+        do {
+            System.out.print("City: ");
+
+            city = sc.nextLine();
+            if (city.length() < 30) break;
+            else {
+                System.out.println("City name should be less than 30 characters");
+            }
+        } while (true);
+
+        long id = cm.addContact(new Contact(name, number, city));
+        System.out.println("New record with ID  " + id + " has been created!");
     }
 }

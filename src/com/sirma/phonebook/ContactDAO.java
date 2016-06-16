@@ -11,6 +11,8 @@ interface ContactDAO {
 
     List<Contact> getContacts();
 
-    void printContacts();
+    Contact getContactName(String name);
+
+    Contact getContactNumber(long number);
 
 }

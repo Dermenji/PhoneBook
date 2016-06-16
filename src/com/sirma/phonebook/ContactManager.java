@@ -30,25 +30,20 @@ public class ContactManager {
     }
 
     public void printContacts() {
-        dao.printContacts();
+        getContacts().forEach(System.out::println);
     }
 
     public boolean doesNameExist(String name) {
-        for (Contact contact : getContacts()) {
-            if (contact.getName().equals(name)) {
-                return false;
-            }
-        }
-        return true;
+        if(null == dao.getContactName(name)){
+            return true;
+        } else return false;
+
     }
 
     public boolean doesNumberExist(long number) {
-        for (Contact contact : getContacts()) {
-            if (contact.getPhone() == (number)) {
-                return false;
-            }
-        }
-        return true;
+        if(null == dao.getContactNumber(number)){
+            return true;
+        }else return false;
     }
 
     public void exportToNewCSVfile(String newFile) {

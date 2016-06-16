@@ -35,14 +35,29 @@ public class ContactSimpleDAO implements ContactDAO {
     }
 
     @Override
-    public List<Contact> getContacts() {
-
-        return contacts;
+    public Contact getContactNumber(long number){
+        for (Contact contact : contacts) {
+            if (contact.getPhone() == (number)) {
+                return contact;
+            }
+        }
+        return null;
     }
 
     @Override
-    public void printContacts() {
-        contacts.forEach(System.out::println);
+    public Contact getContactName(String name){
+        for (Contact contact : contacts) {
+            if (contact.getName().equals(name)) {
+                return contact;
+            }
+        }
+        return null;
+    }
+
+    @Override
+    public List<Contact> getContacts() {
+
+        return contacts;
     }
 
     private long generateContactId() {
