@@ -29,16 +29,26 @@ public class ContactManager {
         return dao.getContacts();
     }
 
+    public void printContacts() {
+        dao.printContacts();
+    }
+
     public boolean doesNameExist(String name) {
-        return dao.doesNameExist(name);
+        for (Contact contact : getContacts()) {
+            if (contact.getName().equals(name)) {
+                return false;
+            }
+        }
+        return true;
     }
 
     public boolean doesNumberExist(long number) {
-        return dao.doesNumberExist(number);
-    }
-
-    public void printContacts() {
-        dao.printContacts();
+        for (Contact contact : getContacts()) {
+            if (contact.getPhone() == (number)) {
+                return false;
+            }
+        }
+        return true;
     }
 
     public void exportToNewCSVfile(String newFile) {
@@ -67,12 +77,11 @@ public class ContactManager {
 
             while ((record = reader.readNext()) != null) {
                 Contact emp = new Contact();
-                emp.setContactId(Long.parseLong(record[0]));
-                emp.setName(record[1]);
-                emp.setPhone(Long.parseLong(record[2]));
-                emp.setCity(record[3]);
-                getContacts().add(emp);
-                System.out.println(record[0] + ", " + record[1] + ", " + record[2] + ", " + record[3]);
+                emp.setName(record[0]);
+                emp.setPhone(Long.parseLong(record[1]));
+                emp.setCity(record[2]);
+                addContact(emp);
+                System.out.println(record[0] + ", " + record[1] + ", " + record[2]);
             }
 
             reader.close();
