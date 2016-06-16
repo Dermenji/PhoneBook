@@ -35,26 +35,6 @@ public class ContactSimpleDAO implements ContactDAO {
     }
 
     @Override
-    public boolean doesNameExist(String name) {
-        for (Contact contact : contacts) {
-            if (contact.getName().equals(name)) {
-                return false;
-            }
-        }
-        return true;
-    }
-
-    @Override
-    public boolean doesNumberExist(long number) {
-        for (Contact contact : contacts) {
-            if (contact.getPhone() == (number)) {
-                return false;
-            }
-        }
-        return true;
-    }
-
-    @Override
     public List<Contact> getContacts() {
 
         return contacts;
