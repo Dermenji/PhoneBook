@@ -1,7 +1,7 @@
 package com.sirma.phonebook;
 
-public class ContactDAOFactory {
-    public static ContactDAO getContactDAO() {
+class ContactDAOFactory {
+    static ContactDAO getContactDAO() {
         return new ContactSimpleDAO();
     }
 }

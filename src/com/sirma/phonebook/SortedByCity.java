@@ -2,7 +2,7 @@ package com.sirma.phonebook;
 
 import java.util.Comparator;
 
-public class SortedByCity implements Comparator<Contact> {
+class SortedByCity implements Comparator<Contact> {
     @Override
     public int compare(Contact o1, Contact o2) {
         int compareCities = o1.getCity().compareTo(o2.getCity());

@@ -24,6 +24,7 @@ import java.util.*;
             }
         }
     }
+
     @Override
     public Contact getContactById(long contactId) {
         for (Contact contact : contacts) {
@@ -56,7 +57,6 @@ import java.util.*;
 
     @Override
     public List<Contact> getContacts() {
-
         return contacts;
     }
 

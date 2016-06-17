@@ -9,42 +9,43 @@ import java.io.IOException;
 import java.util.Collections;
 import java.util.List;
 
-public class ContactManager {
+class ContactManager {
     private String outputFile = "phonebook.csv";
     private ContactDAO dao;
 
-    public ContactManager() {
+    ContactManager() {
         dao = ContactDAOFactory.getContactDAO();
     }
 
-    public Long addContact(Contact contact) throws IOException {
+    Long addContact(Contact contact) throws IOException {
         return dao.addContact(contact);
     }
 
-    public void deleteContact(long contactId) {
+    void deleteContact(long contactId) {
         dao.deleteContact(contactId);
     }
 
-    public List<Contact> getContacts() {
+    List<Contact> getContacts() {
         return dao.getContacts();
     }
 
-    public void printContacts() {
+    void printContacts() {
         getContacts().forEach(System.out::println);
     }
 
-    public boolean doesNameExist(String name) {
+    boolean doesNameExist(String name) {
         return null == dao.getContactByName(name);
     }
-    public boolean doesIdExist(long id) {
+
+    boolean doesIdExist(long id) {
         return null == dao.getContactById(id);
     }
 
-    public boolean doesNumberExist(long number) {
+    boolean doesNumberExist(long number) {
         return null == dao.getContactByNumber(number);
     }
 
-    public void exportToNewCSVfile(String newFile) {
+    void exportToNewCSVfile(String newFile) {
         try {
             CSVWriter writer = new CSVWriter(new FileWriter(newFile, false), ',');
 
@@ -63,7 +64,7 @@ public class ContactManager {
     }
 
 
-    public void loadFromFileAndPrint() {
+    void loadFromFileAndPrint() {
         try {
             CSVReader reader = new CSVReader(new FileReader(outputFile));
             String[] record;

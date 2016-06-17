@@ -64,12 +64,12 @@ public class Main {
 
     private static void removeContact(Scanner sc, ContactManager cm) {
         long idr;
-        do{
+        do {
             System.out.print("Record ID: ");
-            if (sc.hasNextLong()){
+            if (sc.hasNextLong()) {
                 idr = sc.nextLong();
 
-                if(!cm.doesIdExist(idr)){
+                if (!cm.doesIdExist(idr)) {
                     cm.deleteContact(idr);
                     sc.nextLine();
                     break;
@@ -92,9 +92,11 @@ public class Main {
         long number;
         String lengthNum;
         String city;
+
         do {
             System.out.print("Name: ");
             name = sc.nextLine().trim();
+
             if (name.length() < 30) {
                 if (cm.doesNameExist(name)) break;
                 else {
@@ -114,6 +116,7 @@ public class Main {
                 lengthNum = String.valueOf(number);
 
                 if (lengthNum.length() <= 12 && lengthNum.length() >= 3) {
+
                     if (cm.doesNumberExist(number)) {
                         sc.nextLine();
                         break;
@@ -131,8 +134,8 @@ public class Main {
 
         do {
             System.out.print("City: ");
-
             city = sc.nextLine();
+
             if (city.length() < 30) break;
             else {
                 System.out.println("City name should be less than 30 characters");
