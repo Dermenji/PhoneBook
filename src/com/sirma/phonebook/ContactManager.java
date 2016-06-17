@@ -34,26 +34,17 @@ public class ContactManager {
     }
 
     public boolean doesNameExist(String name) {
-        if(null == dao.getContactByName(name)){
-            return true;
-        } else return false;
-
+        return null == dao.getContactByName(name);
     }
     public boolean doesIdExist(long id) {
-        if(null == dao.getContactById(id)){
-            return true;
-        } else return false;
-
-
+        return null == dao.getContactById(id);
     }
 
     public boolean doesNumberExist(long number) {
-        if(null == dao.getContactByNumber(number)){
-            return true;
-        } else return false;
+        return null == dao.getContactByNumber(number);
     }
 
-     void exportToNewCSVfile(String newFile) {
+    public void exportToNewCSVfile(String newFile) {
         try {
             CSVWriter writer = new CSVWriter(new FileWriter(newFile, false), ',');
 
