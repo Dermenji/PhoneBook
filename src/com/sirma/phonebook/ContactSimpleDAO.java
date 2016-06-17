@@ -3,7 +3,7 @@ package com.sirma.phonebook;
 import java.util.*;
 
 
-public class ContactSimpleDAO implements ContactDAO {
+ class ContactSimpleDAO implements ContactDAO {
     private final List<Contact> contacts = new ArrayList<>();
 
     @Override
@@ -25,7 +25,7 @@ public class ContactSimpleDAO implements ContactDAO {
         }
     }
     @Override
-    public Contact getContactId(long contactId) {
+    public Contact getContactById(long contactId) {
         for (Contact contact : contacts) {
             if (contact.getContactId().equals(contactId)) {
                 return contact;
@@ -35,7 +35,7 @@ public class ContactSimpleDAO implements ContactDAO {
     }
 
     @Override
-    public Contact getContactNumber(long number){
+    public Contact getContactByNumber(long number){
         for (Contact contact : contacts) {
             if (contact.getPhone() == (number)) {
                 return contact;
@@ -45,7 +45,7 @@ public class ContactSimpleDAO implements ContactDAO {
     }
 
     @Override
-    public Contact getContactName(String name){
+    public Contact getContactByName(String name){
         for (Contact contact : contacts) {
             if (contact.getName().equals(name)) {
                 return contact;
@@ -62,7 +62,7 @@ public class ContactSimpleDAO implements ContactDAO {
 
     private long generateContactId() {
         long contactId = Math.round(Math.random() * 1000 + System.currentTimeMillis());
-        while (getContactId(contactId) != null) {
+        while (getContactById(contactId) != null) {
             contactId = Math.round(Math.random() * 1000 + System.currentTimeMillis());
         }
         return contactId;

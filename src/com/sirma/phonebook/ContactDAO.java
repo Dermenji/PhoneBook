@@ -11,10 +11,10 @@ interface ContactDAO {
 
     List<Contact> getContacts();
 
-    Contact getContactName(String name);
+    Contact getContactByName(String name);
 
-    Contact getContactNumber(long number);
+    Contact getContactByNumber(long number);
 
-    Contact getContactId(long contactId);
+    Contact getContactById(long contactId);
 
 }
